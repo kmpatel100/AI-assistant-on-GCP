@@ -69,16 +69,6 @@ services:
     
     ports:
       - "5678:5678"
-    
-    # Configure n8n for your environment
-    environment:
-      # Sets the timezone for n8n's scheduled workflows
-      GENERIC_TIMEZONE: America/New_York 
-      # Set a base URL, which is important for webhooks
-      N8N_HOST: localhost
-      N8N_PORT: 5678
-      N8N_PROTOCOL: http
-      N8N_SECURE_COOKIE: "false"
       
     # Use the named volume for persistent data
     volumes:
