@@ -1,0 +1,87 @@
+services:
+  # === 1. Browser Use Web UI Service ===
+  browser-use-web-ui:
+    image: smanx/browser-use-web-ui
+    container_name: browser-use-web-ui
+    
+    ports:
+      - "7788:7788"
+      - "6080:6080"
+      - "5901:5901"
+      - "9222:9222"
+      
+    # Environment Variables
+    environment:
+      OPENAI_ENDPOINT: ${OPENAI_ENDPOINT:-https://api.openai.com/v1}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_ENDPOINT: ${ANTHROPIC_ENDPOINT:-https://api.anthropic.com}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+      AZURE_OPENAI_API_VERSION: ${AZURE_OPENAI_API_VERSION:-2025-01-01-preview}
+      DEEPSEEK_ENDPOINT: ${DEEPSEEK_ENDPOINT:-https://api.deepseek.com}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      OLLAMA_ENDPOINT: ${OLLAMA_ENDPOINT:-http://localhost:11434}
+      MISTRAL_ENDPOINT: ${MISTRAL_ENDPOINT:-https://api.mistral.ai/v1}
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      ALIBABA_ENDPOINT: ${ALIBABA_ENDPOINT:-https://dashscope.aliyuncs.com/compatible-mode/v1}
+      ALIBABA_API_KEY: ${ALIBABA_API_KEY:-}
+      MOONSHOT_ENDPOINT: ${MOONSHOT_ENDPOINT:-https://api.moonshot.cn/v1}
+      MOONSHOT_API_KEY: ${MOONSHOT_API_KEY:-}
+      UNBOUND_ENDPOINT: ${UNBOUND_ENDPOINT:-https://api.getunbound.ai}
+      UNBOUND_API_KEY: ${UNBOUND_API_KEY:-}
+      SiliconFLOW_ENDPOINT: ${SiliconFLOW_ENDPOINT:-https://api.siliconflow.cn/v1/}
+      SiliconFLOW_API_KEY: ${SiliconFLOW_API_KEY:-}
+      IBM_ENDPOINT: ${IBM_ENDPOINT:-https://us-south.ml.cloud.ibm.com}
+      IBM_API_KEY: ${IBM_API_KEY:-}
+      IBM_PROJECT_ID: ${IBM_PROJECT_ID:-}
+      ANONYMIZED_TELEMETRY: ${ANONYMIZED_TELEMETRY:-false}
+      BROWSER_USE_LOGGING_LEVEL: ${BROWSER_USE_LOGGING_LEVEL:-info}
+      BROWSER_PATH: ""
+      BROWSER_USER_DATA: ""
+      BROWSER_DEBUGGING_PORT: ${BROWSER_DEBUGGING_PORT:-9222}
+      BROWSER_DEBUGGING_HOST: localhost
+      USE_OWN_BROWSER: "false"
+      KEEP_BROWSER_OPEN: "true"
+      BROWSER_CDP: ${BROWSER_CDP:-}
+      DISPLAY: ":99"
+      PLAYWRIGHT_BROWSERS_PATH: /ms-browsers
+      RESOLUTION: ${RESOLUTION:-1920x1080x24}
+      RESOLUTION_WIDTH: ${RESOLUTION_WIDTH:-1920}
+      RESOLUTION_HEIGHT: ${RESOLUTION_HEIGHT:-1080}
+      VNC_PASSWORD: ${VNC_PASSWORD:-youvncpassword}
+
+    volumes:
+      - "./web-ui:/tmp/.X11-unix"
+     
+    restart: unless-stopped
+    shm_size: '2gb'
+    cap_add:
+      - SYS_ADMIN
+    tmpfs:
+      - /tmp
+
+  # --- 2. n8n Workflow Automation Service ---
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    
+    ports:
+      - "5678:5678"
+    
+    # Configure n8n for your environment
+    environment:
+      # Sets the timezone for n8n's scheduled workflows
+      GENERIC_TIMEZONE: America/New_York 
+      # Set a base URL, which is important for webhooks
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_SECURE_COOKIE: "false"
+      
+    # Use the named volume for persistent data
+    volumes:
+      - "./n8n_data:/home/node/.n8n"
+      
+    restart: unless-stopped
