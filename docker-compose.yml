@@ -64,24 +64,19 @@ services:
       
 # === 2. n8n Service ===
   n8n:
-    image: n8nio/n8n
-    container_name: n8n
-
+    image: n8nio/n8n:latest
+    restart: always
+    user: root
     ports:
       - "5678:5678"
-
-    # Configure n8n for your environment
     environment:
-      # Sets the timezone for n8n's scheduled workflows
-      GENERIC_TIMEZONE: America/New_York 
-      # Set a base URL, which is important for webhooks
-      N8N_HOST: localhost
-      N8N_PORT: 5678
-      N8N_PROTOCOL: http
-      N8N_SECURE_COOKIE: "false"
-
-    # Use the named volume for persistent data
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - DB_TYPE=sqlite
+      - DB_SQLITE_VACUUM_ON_STARTUP=true
+      - GENERIC_TIMEZONE=America/Toronto
+      - N8N_EDITOR_BASE_URL=http://localhost:5678
+      - N8N_SECURE_COOKIE=false
     volumes:
       - "./n8n_data:/home/node/.n8n"
-
-    restart: unless-stopped
