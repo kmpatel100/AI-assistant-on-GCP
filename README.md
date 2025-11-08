@@ -17,8 +17,9 @@ This is a continuation of my previous **DevFest London** talk, where I showed ho
 ---
 
 ## Step 1: Free Credits
-o get free credits for the session, go to [Access Credits](https://trygcp.dev/claim/devfest-windsor),
+To get free credits for the session, go to [Access Credits](https://trygcp.dev/claim/devfest-windsor),
 and you can follow this presentation 👉️ [How To Get Free Cloud Credits](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Slides/How%20To%20Get%20Free%20Cloud%20Credits.pdf) If you have problems getting the credits.
+
 **Note:** This might not work after the DevFest since it's available for a limited time.
 
 ## Step 2: Create project in GCP
