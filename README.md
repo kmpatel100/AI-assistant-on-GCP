@@ -28,9 +28,10 @@ and you can follow this presentation 👉️ [How To Get Free Cloud Credits](htt
 - Once the project is created, create a VM  
 - If it asks for a Billing account, select **Google Cloud Platform Trial Billing Account**  
 - If prompted to enable **Compute Engine API**, enable it  
-- If you have trouble, you can refer to the video steps provided below
+- If you have trouble, you can refer to the video steps provided below 👇️
 
 ![Alt Text](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Resources/create_project.gif)
+
 
 ## Step 3: Create a VM
 - Click **Create VM**  
@@ -53,9 +54,9 @@ and you can follow this presentation 👉️ [How To Get Free Cloud Credits](htt
 #! /bin/bash
 curl -sSL https://raw.githubusercontent.com/kmpatel100/AI-assistant-on-GCP/refs/heads/main/gcp_startup_script.sh | bash
 ```
-If you have trouble, refer to the video instructions provided below.
+If you have trouble, refer to the video instructions provided below 👇️
 
-![Alt Text]()
+![Alt Text](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Resources/create_VM.gif)
 
 ## Step 4: Configure the network
 **Note:** This setup is only for testing. Do not use it in production as is.  
@@ -72,7 +73,7 @@ If you know what you are doing, you can also use a reverse proxy with a domain.
     - Select **TCP** and add these ports: `5901, 6080, 7788, 9222`  
 - Click **Create** to save the firewall rule
 
-![Alt Text]()
+![Alt Text](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Resources/configure_network_1.gif)
 
 Once the rule is created:  
 - Search for **VM instances**  
@@ -81,7 +82,7 @@ Once the rule is created:
 - Type the name of the network tag you created (e.g., `ai`)  
 - Save the settings
 
-![Alt Text]()
+![Alt Text](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Resources/configure_network_2.gif)
 
 ## Step 5: Explore the Interface  
 
@@ -93,7 +94,7 @@ Once the rule is created:
 - Use port **6080** for the VNC machine  
     - This is where you can observe how your assistant operates and performs tasks  
 
-![Alt Text]()
+![Alt Text](https://github.com/kmpatel100/AI-assistant-on-GCP/blob/main/Resources/Explore_Interface.gif)
 
 ---
 
